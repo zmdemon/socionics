@@ -35,7 +35,7 @@ function typesByQuadra(quadra: typeof quadras[number]) {
           </div>
           <p>
             Тип информационного метаболизма задаётся порядком элементов в модели А.
-            Здесь типы собраны по квадрам, а на карточках показан их блок Эго.
+            Типы собраны по квадрам. На карточках показан их блок Эго.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ function typesByQuadra(quadra: typeof quadras[number]) {
 
         <UCard v-if="visibleTypes.length === 0" class="empty-state">
           <h2>Ничего не найдено</h2>
-          <p>Попробуйте код «ЛИИ», псевдоним «Гексли» или название квадры.</p>
+          <p>Попробуйте поиск по коду «ЛИИ», псевдониму «Гексли», названию квадры.</p>
           <UButton label="Очистить поиск" color="neutral" variant="outline" @click="query = ''" />
         </UCard>
       </UContainer>

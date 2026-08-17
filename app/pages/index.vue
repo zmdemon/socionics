@@ -18,7 +18,7 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
             <UBadge color="neutral" variant="subtle" size="lg" class="eyebrow-badge">
               Визуальный справочник
             </UBadge>
-            <h1>Разобраться в соционике — по структуре, а не по стереотипам</h1>
+            <h1>Разобраться в структуре соционики</h1>
             <p class="hero-lead">
               Спокойная карта из 16 типов, восьми информационных элементов и позиций модели А.
               Сравнивайте всё на одной странице и держите термины перед глазами.
@@ -75,8 +75,8 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
             <h2>Три слоя одной типологии</h2>
           </div>
           <p>
-            Социотип показывает общую конфигурацию, элемент — область информации,
-            а позиция функции — характер работы с ней.
+            Социотип показывает общую конфигурацию. Элемент описывает область информации.
+            Позиция функции показывает характер работы с ней.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
           <UCard class="feature-card feature-card--dark">
             <span class="feature-number">02</span>
             <h3>Функции</h3>
-            <p>Единая матрица: типы расположены по столбцам, а позиции модели А — по строкам.</p>
+            <p>Единая матрица с типами по столбцам и позициями модели А по строкам.</p>
             <UButton to="/functions" label="Открыть матрицу" color="neutral" variant="soft" class="feature-link" />
           </UCard>
           <UCard class="feature-card">
@@ -107,10 +107,10 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
       <UContainer>
         <div class="note-card">
           <p class="section-kicker">Важно помнить</p>
-          <h2>Типология — это язык описания, а не медицинский диагноз</h2>
+          <h2>Типология — язык описания</h2>
           <p>
-            Соционика не имеет статуса общепринятого научного диагностического метода.
-            Используйте её как концептуальную модель для наблюдения и разговора, а не как окончательный ярлык для человека.
+            В академической психологии у соционики отсутствует статус общепринятого научного диагностического метода.
+            Используйте её как концептуальную модель для наблюдения, изучения терминов и разговора о типологии.
           </p>
           <UButton to="/about" label="О принципах проекта" color="neutral" variant="outline" />
         </div>

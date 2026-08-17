@@ -5,14 +5,20 @@ import { informationElements } from '~~/shared/data/socionics'
 const props = defineProps<{
   code: ElementCode
   compact?: boolean
+  symbol?: boolean
 }>()
 
 const element = computed(() => informationElements[props.code])
 </script>
 
 <template>
-  <span class="element-pill" :class="{ 'element-pill--compact': compact }">
-    <span class="element-code">{{ element.code }}</span>
+  <span
+    class="element-pill"
+    :class="{ 'element-pill--compact': compact }"
+    :aria-label="`${element.code}: ${element.name}`"
+  >
+    <SocionicsSymbol v-if="symbol" :code="code" />
+    <span v-else class="element-code" aria-hidden="true">{{ element.code }}</span>
     <span v-if="!compact" class="element-name">{{ element.name }}</span>
   </span>
 </template>

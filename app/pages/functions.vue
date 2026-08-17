@@ -3,7 +3,7 @@ import { functionPositions, informationElements, socionicTypes } from '~~/shared
 
 usePageSeo(
   'Таблица функций социотипов',
-  'Сравнительная таблица первых четырёх функций модели А для всех 16 социотипов с расшифровкой обозначений ЧИ, БИ, ЧС, БС, ЧЛ, БЛ, ЧЭ и БЭ.'
+  'Сравнительная таблица всех восьми функций модели А для 16 социотипов с графическими знаками информационных элементов и их расшифровкой.'
 )
 </script>
 
@@ -17,8 +17,8 @@ usePageSeo(
             <h1>Функции всех типов</h1>
           </div>
           <p>
-            Читайте по столбцу, чтобы увидеть модель конкретного типа, или по строке,
-            чтобы сравнить одну позицию сразу у всех 16 типов.
+            Столбец показывает модель конкретного типа. Строка помогает сравнить
+            одну позицию сразу у всех 16 типов.
           </p>
         </div>
         <div class="table-tip">
@@ -30,7 +30,7 @@ usePageSeo(
 
     <section class="matrix-section">
       <UContainer class="matrix-container">
-        <div class="matrix-frame" tabindex="0" aria-label="Таблица первых четырёх функций всех социотипов">
+        <div class="matrix-frame" tabindex="0" aria-label="Таблица всех восьми функций социотипов">
           <table class="functions-table">
             <thead>
               <tr>
@@ -52,7 +52,7 @@ usePageSeo(
                   <small>{{ position.description }}</small>
                 </th>
                 <td v-for="type in socionicTypes" :key="`${type.code}-${position.number}`">
-                  <ElementPill :code="type.functions[positionIndex]!" />
+                  <ElementPill :code="type.functions[positionIndex]!" symbol />
                 </td>
               </tr>
             </tbody>
@@ -68,12 +68,15 @@ usePageSeo(
             <p class="section-kicker">Легенда</p>
             <h2>Восемь элементов</h2>
           </div>
-          <p>«Чёрный» означает экстравертную установку элемента, «белый» — интровертную.</p>
+          <p>«Чёрный» означает экстравертную установку элемента. «Белый» означает интровертную установку.</p>
         </div>
 
         <div class="legend-grid">
           <UCard v-for="element in informationElements" :key="element.code" class="legend-card">
-            <div class="legend-code">{{ element.code }}</div>
+            <div class="legend-code">
+              <SocionicsSymbol :code="element.code" size="lg" />
+              <span>{{ element.code }}</span>
+            </div>
             <div>
               <h3>{{ element.name }}</h3>
               <p>{{ element.shortName }}</p>
@@ -84,8 +87,9 @@ usePageSeo(
         <div class="source-note">
           <strong>О терминологии</strong>
           <p>
-            В таблице используются распространённые русские сокращения элементов модели А.
-            Показаны четыре функции ментального кольца: базовая, творческая, ролевая и болевая.
+            В таблице используются графические знаки элементов модели А. Заполненный знак обозначает «чёрный» элемент.
+            Контурный знак обозначает «белый» элемент. Буквенные сокращения сохранены в легенде для расшифровки.
+            Показаны все восемь функций: четыре позиции ментального кольца и четыре позиции витального кольца.
           </p>
         </div>
       </UContainer>
