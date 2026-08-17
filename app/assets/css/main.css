@@ -771,6 +771,26 @@ h3 {
   color: #bfbfba;
 }
 
+.position-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.position-heading__copy {
+  min-width: 0;
+}
+
+.position-heading__copy > span {
+  display: block;
+  font-weight: 700;
+}
+
+.position-toggle {
+  display: none;
+}
+
 .functions-table tbody .position-column strong {
   display: block;
   margin-bottom: 0.2rem;
@@ -1082,7 +1102,7 @@ h3 {
     --position-column-width: 12rem;
   }
 
-  .matrix-frame--scrolled {
+  .matrix-frame--compact {
     --position-column-width: 4rem;
   }
 
@@ -1103,35 +1123,73 @@ h3 {
     gap: 0.35rem;
   }
 
-  .matrix-frame--scrolled .position-column {
+  .position-toggle {
+    display: inline-flex;
+    width: 1.75rem;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    min-height: 1.75rem;
+    flex: 0 0 1.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    border: 0;
+    border-radius: 0.4rem;
+    background: transparent;
+    color: #f1f1ee;
+    box-shadow: none;
+    opacity: 0.78;
+    transition: background-color 120ms ease, opacity 120ms ease, transform 80ms ease;
+  }
+
+  .position-toggle:hover {
+    background: rgb(241 241 238 / 10%);
+    opacity: 1;
+  }
+
+  .position-toggle:active {
+    background: rgb(241 241 238 / 18%);
+    transform: scale(0.9);
+  }
+
+  .position-toggle__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .matrix-frame--compact .position-column {
     padding-right: 0.55rem;
     padding-left: 0.55rem;
   }
 
-  .matrix-frame--scrolled thead .position-column > * {
+  .matrix-frame--compact .position-heading {
+    justify-content: center;
+  }
+
+  .matrix-frame--compact .position-heading__copy {
     display: none;
   }
 
-  .matrix-frame--scrolled .position-column .position-description {
+  .matrix-frame--compact .position-column .position-description {
     display: none;
     max-height: 0;
     opacity: 0;
     transform: translateY(-0.25rem);
   }
 
-  .matrix-frame--scrolled .position-number {
+  .matrix-frame--compact .position-number {
     margin-bottom: 0.45rem;
   }
 
-  .matrix-frame--scrolled .position-name-full {
+  .matrix-frame--compact .position-name-full {
     display: none;
   }
 
-  .matrix-frame--scrolled .position-name-compact {
+  .matrix-frame--compact .position-name-compact {
     display: inline;
   }
 
-  .matrix-frame--scrolled tbody .position-column strong {
+  .matrix-frame--compact tbody .position-column strong {
     font-size: 0.9rem;
     line-height: 1.1;
   }

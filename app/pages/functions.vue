@@ -6,57 +6,11 @@ usePageSeo(
   'Сравнительная таблица всех восьми функций модели А для 16 социотипов с графическими знаками информационных элементов и их расшифровкой.'
 )
 
-const isMatrixScrolled = ref(false)
-let previousMatrixScrollLeft = 0
-let isMatrixCompactionLocked = false
-let matrixCompactionTimer: ReturnType<typeof setTimeout> | undefined
+const isPositionColumnCompact = ref(false)
 
-function keepMatrixAtStart(frame: HTMLElement) {
-  if (frame.scrollLeft !== 1) {
-    frame.scrollLeft = 1
-  }
-
-  previousMatrixScrollLeft = 1
-  clearTimeout(matrixCompactionTimer)
-  matrixCompactionTimer = setTimeout(() => {
-    isMatrixCompactionLocked = false
-    matrixCompactionTimer = undefined
-  }, 160)
+function togglePositionColumn() {
+  isPositionColumnCompact.value = !isPositionColumnCompact.value
 }
-
-async function handleMatrixScroll(event: Event) {
-  const frame = event.currentTarget
-  if (!(frame instanceof HTMLElement)) return
-
-  const scrollLeft = frame.scrollLeft
-
-  if (!window.matchMedia('(max-width: 760px)').matches) {
-    isMatrixScrolled.value = false
-    previousMatrixScrollLeft = scrollLeft
-    return
-  }
-
-  if (isMatrixCompactionLocked) {
-    keepMatrixAtStart(frame)
-    return
-  }
-
-  if (!isMatrixScrolled.value && scrollLeft > 32) {
-    isMatrixScrolled.value = true
-    isMatrixCompactionLocked = true
-    await nextTick()
-    keepMatrixAtStart(frame)
-    return
-  }
-
-  if (isMatrixScrolled.value && scrollLeft < 0.5 && scrollLeft < previousMatrixScrollLeft) {
-    isMatrixScrolled.value = false
-  }
-
-  previousMatrixScrollLeft = scrollLeft
-}
-
-onBeforeUnmount(() => clearTimeout(matrixCompactionTimer))
 </script>
 
 <template>
@@ -75,7 +29,7 @@ onBeforeUnmount(() => clearTimeout(matrixCompactionTimer))
         </div>
         <div class="table-tip">
           <span aria-hidden="true">↔</span>
-          <p>Таблица прокручивается по горизонтали. Первый столбец остаётся на месте и сжимается после начала прокрутки.</p>
+          <p>Таблица прокручивается по горизонтали. Кнопка со стрелками сжимает и разворачивает закреплённый первый столбец.</p>
         </div>
       </UContainer>
     </section>
@@ -84,17 +38,46 @@ onBeforeUnmount(() => clearTimeout(matrixCompactionTimer))
       <UContainer class="matrix-container">
         <div
           class="matrix-frame"
-          :class="{ 'matrix-frame--scrolled': isMatrixScrolled }"
+          :class="{ 'matrix-frame--compact': isPositionColumnCompact }"
           tabindex="0"
           aria-label="Таблица всех восьми функций социотипов"
-          @scroll.passive="handleMatrixScroll"
         >
           <table class="functions-table">
             <thead>
               <tr>
                 <th scope="col" class="position-column">
-                  <span>Позиция</span>
-                  <small>модель А</small>
+                  <div class="position-heading">
+                    <div class="position-heading__copy">
+                      <span>Позиция</span>
+                      <small>модель А</small>
+                    </div>
+                    <UButton
+                      class="position-toggle"
+                      color="neutral"
+                      variant="ghost"
+                      square
+                      :aria-label="isPositionColumnCompact ? 'Развернуть столбец позиций' : 'Сжать столбец позиций'"
+                      :aria-pressed="isPositionColumnCompact"
+                      :title="isPositionColumnCompact ? 'Развернуть столбец' : 'Сжать столбец'"
+                      @click="togglePositionColumn"
+                    >
+                      <svg
+                        class="position-toggle__icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                        <path d="M9 3v18" />
+                        <path v-if="isPositionColumnCompact" d="m14 9 3 3-3 3" />
+                        <path v-else d="m16 15-3-3 3-3" />
+                      </svg>
+                    </UButton>
+                  </div>
                 </th>
                 <th v-for="type in socionicTypes" :key="type.code" scope="col">
                   <strong>{{ type.code }}</strong>
