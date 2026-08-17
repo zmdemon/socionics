@@ -18,7 +18,7 @@ const element = computed(() => informationElements[props.code])
     :aria-label="`${element.code}: ${element.name}`"
   >
     <SocionicsSymbol v-if="symbol" :code="code" />
-    <span v-else class="element-code" aria-hidden="true">{{ element.code }}</span>
+    <span v-if="compact || !symbol" class="element-code" aria-hidden="true">{{ element.code }}</span>
     <span v-if="!compact" class="element-name">{{ element.name }}</span>
   </span>
 </template>

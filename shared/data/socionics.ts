@@ -86,14 +86,14 @@ export const informationElements: Record<ElementCode, InformationElement> = {
 }
 
 export const functionPositions = [
-  { number: 1, name: 'Базовая', description: 'основа мировосприятия и зона максимальной компетенции' },
-  { number: 2, name: 'Творческая', description: 'создаёт новое на основе информации базовой функции' },
-  { number: 3, name: 'Ролевая', description: 'накапливает знания, но медленно применяет их в новых ситуациях' },
-  { number: 4, name: 'Болевая', description: 'игнорирует информацию или воспринимает воздействие болезненно' },
-  { number: 5, name: 'Внушаемая', description: 'некритично воспринимает готовую информацию от других' },
-  { number: 6, name: 'Активационная', description: 'нуждается в оценке и включается в совместную работу' },
-  { number: 7, name: 'Ограничительная', description: 'обеспечивает необходимый минимум и ограничивает лишнюю информацию' },
-  { number: 8, name: 'Фоновая', description: 'работает постоянно, учитывается в решениях и проявляется без слов' }
+  { number: 1, name: 'Базовая', compactName: 'Баз.', description: 'основа мировосприятия и зона максимальной компетенции' },
+  { number: 2, name: 'Творческая', compactName: 'Тв.', description: 'создаёт новое на основе информации базовой функции' },
+  { number: 3, name: 'Ролевая', compactName: 'Рол.', description: 'накапливает знания, но медленно применяет их в новых ситуациях' },
+  { number: 4, name: 'Болевая', compactName: 'Бол.', description: 'игнорирует информацию или воспринимает воздействие болезненно' },
+  { number: 5, name: 'Внушаемая', compactName: 'Вн.', description: 'некритично воспринимает готовую информацию от других' },
+  { number: 6, name: 'Активационная', compactName: 'Акт.', description: 'нуждается в оценке и включается в совместную работу' },
+  { number: 7, name: 'Ограничительная', compactName: 'Огр.', description: 'обеспечивает необходимый минимум и ограничивает лишнюю информацию' },
+  { number: 8, name: 'Фоновая', compactName: 'Фон.', description: 'работает постоянно, учитывается в решениях и проявляется без слов' }
 ] as const
 
 export const socionicTypes: readonly SocionicType[] = [

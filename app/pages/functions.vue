@@ -5,6 +5,58 @@ usePageSeo(
   'Таблица функций социотипов',
   'Сравнительная таблица всех восьми функций модели А для 16 социотипов с графическими знаками информационных элементов и их расшифровкой.'
 )
+
+const isMatrixScrolled = ref(false)
+let previousMatrixScrollLeft = 0
+let isMatrixCompactionLocked = false
+let matrixCompactionTimer: ReturnType<typeof setTimeout> | undefined
+
+function keepMatrixAtStart(frame: HTMLElement) {
+  if (frame.scrollLeft !== 1) {
+    frame.scrollLeft = 1
+  }
+
+  previousMatrixScrollLeft = 1
+  clearTimeout(matrixCompactionTimer)
+  matrixCompactionTimer = setTimeout(() => {
+    isMatrixCompactionLocked = false
+    matrixCompactionTimer = undefined
+  }, 160)
+}
+
+async function handleMatrixScroll(event: Event) {
+  const frame = event.currentTarget
+  if (!(frame instanceof HTMLElement)) return
+
+  const scrollLeft = frame.scrollLeft
+
+  if (!window.matchMedia('(max-width: 760px)').matches) {
+    isMatrixScrolled.value = false
+    previousMatrixScrollLeft = scrollLeft
+    return
+  }
+
+  if (isMatrixCompactionLocked) {
+    keepMatrixAtStart(frame)
+    return
+  }
+
+  if (!isMatrixScrolled.value && scrollLeft > 32) {
+    isMatrixScrolled.value = true
+    isMatrixCompactionLocked = true
+    await nextTick()
+    keepMatrixAtStart(frame)
+    return
+  }
+
+  if (isMatrixScrolled.value && scrollLeft < 0.5 && scrollLeft < previousMatrixScrollLeft) {
+    isMatrixScrolled.value = false
+  }
+
+  previousMatrixScrollLeft = scrollLeft
+}
+
+onBeforeUnmount(() => clearTimeout(matrixCompactionTimer))
 </script>
 
 <template>
@@ -23,14 +75,20 @@ usePageSeo(
         </div>
         <div class="table-tip">
           <span aria-hidden="true">↔</span>
-          <p>Таблица прокручивается по горизонтали. Первый столбец остаётся на месте.</p>
+          <p>Таблица прокручивается по горизонтали. Первый столбец остаётся на месте и сжимается после начала прокрутки.</p>
         </div>
       </UContainer>
     </section>
 
     <section class="matrix-section">
       <UContainer class="matrix-container">
-        <div class="matrix-frame" tabindex="0" aria-label="Таблица всех восьми функций социотипов">
+        <div
+          class="matrix-frame"
+          :class="{ 'matrix-frame--scrolled': isMatrixScrolled }"
+          tabindex="0"
+          aria-label="Таблица всех восьми функций социотипов"
+          @scroll.passive="handleMatrixScroll"
+        >
           <table class="functions-table">
             <thead>
               <tr>
@@ -48,11 +106,14 @@ usePageSeo(
               <tr v-for="(position, positionIndex) in functionPositions" :key="position.number">
                 <th scope="row" class="position-column">
                   <span class="position-number">0{{ position.number }}</span>
-                  <strong>{{ position.name }}</strong>
-                  <small>{{ position.description }}</small>
+                  <strong>
+                    <span class="position-name-full">{{ position.name }}</span>
+                    <span class="position-name-compact">{{ position.compactName }}</span>
+                  </strong>
+                  <small class="position-description">{{ position.description }}</small>
                 </th>
                 <td v-for="type in socionicTypes" :key="`${type.code}-${position.number}`">
-                  <ElementPill :code="type.functions[positionIndex]!" symbol />
+                  <ElementPill :code="type.functions[positionIndex]!" symbol compact />
                 </td>
               </tr>
             </tbody>
