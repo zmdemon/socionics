@@ -43,7 +43,7 @@ usePageSeo(
         <div class="about-statement">
           <div>
             <p class="section-kicker">Как пользоваться</p>
-            <h2>Изучайте устройство моделей</h2>
+            <h2>Изучайте устройство модели А</h2>
           </div>
           <div class="about-statement__copy">
             <p>

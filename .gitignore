@@ -27,3 +27,6 @@ Thumbs.db
 
 # Vercel local metadata
 .vercel
+
+# Local generated reference materials for agents
+/docs/agent-sources/

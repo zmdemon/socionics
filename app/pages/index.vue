@@ -20,8 +20,8 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
             </UBadge>
             <h1>Разобраться в структуре соционики</h1>
             <p class="hero-lead">
-              Спокойная карта из 16 типов, восьми информационных элементов и позиций модели А.
-              Сравнивайте всё на одной странице и держите термины перед глазами.
+              Соционика — типологическая концепция о 16 типах информационного метаболизма.
+              Она описывает различия в том, как человек получает, обрабатывает и выдаёт информацию.
             </p>
             <div class="hero-actions">
               <UButton to="/functions" label="Открыть таблицу функций" color="neutral" size="lg" />
@@ -75,8 +75,8 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
             <h2>Три слоя одной типологии</h2>
           </div>
           <p>
-            Социотип показывает общую конфигурацию. Элемент описывает область информации.
-            Позиция функции показывает характер работы с ней.
+            Социотип задаёт конфигурацию функций модели А. Аспект — это вид информации.
+            Функция определяет, как информация этого аспекта воспринимается и обрабатывается.
           </p>
         </div>
 
@@ -84,7 +84,7 @@ const elementCodes = Object.keys(informationElements) as Array<keyof typeof info
           <UCard class="feature-card">
             <span class="feature-number">01</span>
             <h3>Социотипы</h3>
-            <p>Все 16 типов с полными названиями, псевдонимами, квадрами и парой сильных функций.</p>
+            <p>Все 16 типов с полными названиями, псевдонимами, квадрами и блоком Эго — базовой и творческой функциями.</p>
             <UButton to="/types" label="Перейти к типам" color="neutral" variant="link" class="feature-link" />
           </UCard>
           <UCard class="feature-card feature-card--dark">
