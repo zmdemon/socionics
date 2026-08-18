@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { functionPositions, informationElements, socionicTypes } from '~~/shared/data/socionics'
+import type { FunctionElementDetail } from '~~/shared/data/socionics'
+import {
+  functionPositions,
+  getFunctionElementDetail,
+  informationElements,
+  socionicTypes
+} from '~~/shared/data/socionics'
 
 usePageSeo(
   'Таблица функций социотипов',
@@ -7,9 +13,33 @@ usePageSeo(
 )
 
 const isPositionColumnCompact = ref(false)
+const isFunctionDetailOpen = ref(false)
+const selectedFunctionDetail = ref<FunctionElementDetail | null>(null)
+
+const matrixRows = functionPositions.map((position, positionIndex) => ({
+  position,
+  cells: socionicTypes.map((type) => {
+    const elementCode = type.functions[positionIndex]!
+
+    return {
+      type,
+      elementCode,
+      detail: getFunctionElementDetail(position.number, elementCode)
+    }
+  })
+}))
 
 function togglePositionColumn() {
   isPositionColumnCompact.value = !isPositionColumnCompact.value
+}
+
+function openFunctionDetail(detail: FunctionElementDetail) {
+  selectedFunctionDetail.value = detail
+  isFunctionDetailOpen.value = true
+}
+
+function clearFunctionDetail() {
+  selectedFunctionDetail.value = null
 }
 </script>
 
@@ -29,7 +59,10 @@ function togglePositionColumn() {
         </div>
         <div class="table-tip">
           <span aria-hidden="true">↔</span>
-          <p>Таблица прокручивается по горизонтали. Кнопка со стрелками сжимает и разворачивает закреплённый первый столбец.</p>
+          <p>
+            Таблица прокручивается по горизонтали. Кнопка со стрелками сжимает и разворачивает
+            закреплённый первый столбец. Обозначения болевой ЧС открывают подробное описание.
+          </p>
         </div>
       </UContainer>
     </section>
@@ -86,17 +119,29 @@ function togglePositionColumn() {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(position, positionIndex) in functionPositions" :key="position.number">
+              <tr v-for="row in matrixRows" :key="row.position.number">
                 <th scope="row" class="position-column">
-                  <span class="position-number">0{{ position.number }}</span>
+                  <span class="position-number">0{{ row.position.number }}</span>
                   <strong>
-                    <span class="position-name-full">{{ position.name }}</span>
-                    <span class="position-name-compact">{{ position.compactName }}</span>
+                    <span class="position-name-full">{{ row.position.name }}</span>
+                    <span class="position-name-compact">{{ row.position.compactName }}</span>
                   </strong>
-                  <small class="position-description">{{ position.description }}</small>
+                  <small class="position-description">{{ row.position.description }}</small>
                 </th>
-                <td v-for="type in socionicTypes" :key="`${type.code}-${position.number}`">
-                  <ElementPill :code="type.functions[positionIndex]!" symbol compact />
+                <td
+                  v-for="cell in row.cells"
+                  :key="`${cell.type.code}-${row.position.number}`"
+                >
+                  <ElementPill
+                    v-if="cell.detail"
+                    :code="cell.elementCode"
+                    symbol
+                    compact
+                    interactive
+                    :aria-label="`Открыть описание «${cell.detail.title}» для типа ${cell.type.code} — ${cell.type.alias}`"
+                    @click="openFunctionDetail(cell.detail)"
+                  />
+                  <ElementPill v-else :code="cell.elementCode" symbol compact />
                 </td>
               </tr>
             </tbody>
@@ -104,6 +149,27 @@ function togglePositionColumn() {
         </div>
       </UContainer>
     </section>
+
+    <UModal
+      v-model:open="isFunctionDetailOpen"
+      :title="selectedFunctionDetail?.title"
+      :description="selectedFunctionDetail?.description"
+      :ui="{
+        overlay: 'function-detail-overlay',
+        content: 'function-detail-modal',
+        header: 'function-detail-modal__header',
+        body: 'function-detail-modal__body'
+      }"
+      @after:leave="clearFunctionDetail"
+    >
+      <template #body>
+        <div v-if="selectedFunctionDetail" class="function-detail-copy">
+          <p v-for="paragraph in selectedFunctionDetail.paragraphs" :key="paragraph">
+            {{ paragraph }}
+          </p>
+        </div>
+      </template>
+    </UModal>
 
     <section id="legend" class="legend-section">
       <UContainer>
