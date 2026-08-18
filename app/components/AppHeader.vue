@@ -16,14 +16,14 @@ function isActive(to: string) {
 <template>
   <header class="site-header">
     <UContainer class="header-inner">
-      <NuxtLink to="/" class="brand" aria-label="СоциоНавигатор — на главную">
+      <NuxtLink to="/" class="brand" aria-label="Соционика — на главную">
         <span class="brand-mark" aria-hidden="true">
           <span />
           <span />
           <span />
           <span />
         </span>
-        <span class="brand-name">СоциоНавигатор</span>
+        <span class="brand-name">Соционика</span>
       </NuxtLink>
 
       <nav class="header-tabs" aria-label="Основная навигация">

@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   site: {
     // Replace through NUXT_PUBLIC_SITE_URL before the first public deployment.
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://socionavigator.example',
-    name: 'СоциоНавигатор',
+    name: 'Соционика',
     description: 'Спокойный визуальный справочник по соционике, социотипам и функциям модели А.'
   },
 

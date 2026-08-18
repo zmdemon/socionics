@@ -3,7 +3,7 @@ export function usePageSeo(title: string, description: string) {
   const config = useRuntimeConfig()
   const siteUrl = config.public.siteUrl.replace(/\/$/, '')
   const canonical = `${siteUrl}${route.path === '/' ? '' : route.path}`
-  const fullTitle = title === 'СоциоНавигатор' ? title : `${title} — СоциоНавигатор`
+  const fullTitle = title === 'Соционика' ? title : `${title} — Соционика`
 
   useSeoMeta({
     title: fullTitle,
