@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxtjs/robots',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@vite-pwa/nuxt'
   ],
 
   css: ['~/assets/css/main.css'],
@@ -34,7 +35,57 @@ export default defineNuxtConfig({
       meta: [
         { name: 'theme-color', content: '#ececea' },
         { name: 'color-scheme', content: 'light' }
+      ],
+      link: [
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
       ]
+    }
+  },
+
+  pwa: {
+    registerType: 'autoUpdate',
+    injectRegister: 'auto',
+    includeAssets: ['apple-touch-icon.png'],
+    manifest: {
+      id: '/',
+      name: 'Соционика',
+      short_name: 'Соционика',
+      description: 'Справочник по соционике, социотипам и функциям модели А.',
+      lang: 'ru',
+      start_url: '/',
+      scope: '/',
+      display: 'standalone',
+      background_color: '#f1f1ee',
+      theme_color: '#ececea',
+      icons: [
+        {
+          src: '/pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any'
+        },
+        {
+          src: '/pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any'
+        },
+        {
+          src: '/pwa-maskable-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable'
+        }
+      ]
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,mjs,html,png,svg,ico,webmanifest,json}'],
+      cleanupOutdatedCaches: true,
+      navigateFallback: '/',
+      navigateFallbackDenylist: [/^\/(?:api|_nuxt)\//]
+    },
+    devOptions: {
+      enabled: false
     }
   },
 

@@ -1,5 +1,6 @@
 <template>
   <UApp>
+    <VitePwaManifest />
     <div class="site-shell">
       <AppHeader />
       <NuxtPage />
