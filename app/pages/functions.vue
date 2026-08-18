@@ -49,19 +49,16 @@ function clearFunctionDetail() {
       <UContainer>
         <div class="page-intro__grid">
           <div>
-            <p class="section-kicker">Модель А</p>
-            <h1>Функции всех типов</h1>
+            <p class="section-kicker">Раскладка по номерам</p>
+            <h1>Таблица функций</h1>
           </div>
           <p>
-            Столбец показывает модель конкретного типа. Строка помогает сравнить
-            одну позицию сразу у всех 16 типов.
+            Столбец. Строка.
           </p>
         </div>
         <div class="table-tip">
-          <span aria-hidden="true">↔</span>
           <p>
-            Таблица прокручивается по горизонтали. Кнопка со стрелками сжимает и разворачивает
-            закреплённый первый столбец. Обозначения болевой ЧС открывают подробное описание.
+            Таблица. Некоторые ичейки кликабельные.
           </p>
         </div>
       </UContainer>
@@ -162,6 +159,28 @@ function clearFunctionDetail() {
       }"
       @after:leave="clearFunctionDetail"
     >
+      <template #close>
+        <UButton
+          class="function-detail-modal__close"
+          color="neutral"
+          variant="ghost"
+          square
+          aria-label="Закрыть"
+        >
+          <svg
+            class="function-detail-modal__close-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </UButton>
+      </template>
+
       <template #body>
         <div v-if="selectedFunctionDetail" class="function-detail-copy">
           <p v-for="paragraph in selectedFunctionDetail.paragraphs" :key="paragraph">

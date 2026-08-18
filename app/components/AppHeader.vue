@@ -4,7 +4,7 @@ const route = useRoute()
 const navigation = [
   { label: 'Обзор', to: '/' },
   { label: 'Социотипы', to: '/types' },
-  { label: 'Функции', to: '/functions' },
+  { label: 'Таблица', to: '/functions' },
   { label: 'О проекте', to: '/about' }
 ]
 
