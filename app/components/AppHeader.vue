@@ -5,6 +5,7 @@ const navigation = [
   { label: 'Обзор', to: '/' },
   { label: 'Социотипы', to: '/types' },
   { label: 'Таблица', to: '/functions' },
+  { label: 'Статьи', to: '/articles' },
   { label: 'О проекте', to: '/about' }
 ]
 

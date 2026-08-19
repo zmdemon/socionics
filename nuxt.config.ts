@@ -93,13 +93,15 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/types': { prerender: true },
     '/functions': { prerender: true },
+    '/articles': { prerender: true },
+    '/articles/racionalnye-ekstraverty': { prerender: true },
     '/about': { prerender: true }
   },
 
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/types', '/functions', '/about']
+      routes: ['/', '/types', '/functions', '/articles', '/articles/racionalnye-ekstraverty', '/about']
     }
   },
 
