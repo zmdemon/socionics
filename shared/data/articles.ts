@@ -1,4 +1,4 @@
-import rationalExtrovertsContent from './articles/rational-extroverts.md?raw'
+import rationalExtrovertsContent from './articles/rational-extroverts'
 
 export interface Article {
   slug: string
