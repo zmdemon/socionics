@@ -79,7 +79,8 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,mjs,html,png,svg,ico,webmanifest,json}'],
+      globPatterns: ['**/*.{js,css,mjs,html,png,avif,svg,ico,webmanifest,json}'],
+      globIgnores: ['rational-extroverts.png'],
       cleanupOutdatedCaches: true,
       navigateFallback: '/',
       navigateFallbackDenylist: [/^\/(?:api|_nuxt)\//]

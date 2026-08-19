@@ -7,6 +7,7 @@ export interface Article {
   content: string
   image?: {
     src: string
+    avifSrc?: string
     alt: string
   }
 }
@@ -24,6 +25,7 @@ export const articles: Article[] = [
     content: rationalExtrovertsContent,
     image: {
       src: '/rational-extroverts.png',
+      avifSrc: '/rational-extroverts.avif',
       alt: 'Стилизованный портрет человека на фоне силуэтов, часов и шахматной фигуры'
     }
   }

@@ -1126,10 +1126,16 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.article-card__picture {
+  width: 100%;
+  align-self: center;
+  display: block;
+  line-height: 0;
+}
+
 .article-card__image {
   width: 100%;
   aspect-ratio: 1;
-  align-self: center;
   display: block;
   object-fit: cover;
   border: 1px solid var(--line);
@@ -1531,7 +1537,7 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .article-card__image {
+  .article-card__picture {
     width: min(100%, 11rem);
   }
 

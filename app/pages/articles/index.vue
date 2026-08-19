@@ -25,12 +25,21 @@ usePageSeo(
                 { 'article-card__layout--without-image': !article.image }
               ]"
             >
-              <img
+              <picture
                 v-if="article.image"
-                :src="article.image.src"
-                :alt="article.image.alt"
-                class="article-card__image"
+                class="article-card__picture"
               >
+                <source
+                  v-if="article.image.avifSrc"
+                  :srcset="article.image.avifSrc"
+                  type="image/avif"
+                >
+                <img
+                  :src="article.image.src"
+                  :alt="article.image.alt"
+                  class="article-card__image"
+                >
+              </picture>
 
               <div class="article-card__content">
                 <h2>{{ article.title }}</h2>
