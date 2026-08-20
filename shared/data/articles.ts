@@ -1,4 +1,7 @@
 import rationalExtrovertsContent from './articles/rational-extroverts'
+import irrationalIntrovertsContent from './articles/irrational-introverts'
+import rationalIntrovertsContent from './articles/rational-introverts'
+import irrationalExtrovertsContent from './articles/irrational-extroverts'
 
 export interface Article {
   slug: string
@@ -10,6 +13,7 @@ export interface Article {
     avifSrc?: string
     alt: string
   }
+  imagePlaceholder?: boolean
 }
 
 export type ArticleContentBlock =
@@ -27,6 +31,39 @@ export const articles: Article[] = [
       src: '/rational-extroverts.png',
       avifSrc: '/rational-extroverts.avif',
       alt: 'Стилизованный портрет человека на фоне силуэтов, часов и шахматной фигуры'
+    }
+  },
+  {
+    slug: 'irracionalnye-introverty',
+    title: 'Иррациональные интроверты',
+    description: 'Наблюдение изменений',
+    content: irrationalIntrovertsContent,
+    image: {
+      src: '/irrational-introverts.png',
+      avifSrc: '/irrational-introverts.avif',
+      alt: 'Стилизованный портрет задумчивого человека на фоне силуэтов и геометрических фигур'
+    }
+  },
+  {
+    slug: 'racionalnye-introverty',
+    title: 'Рациональные интроверты',
+    description: 'Перестройка себя',
+    content: rationalIntrovertsContent,
+    image: {
+      src: '/rational-introverts.png',
+      avifSrc: '/rational-introverts.avif',
+      alt: 'Стилизованный портрет человека с архитектурными формами и лестницей внутри головы'
+    }
+  },
+  {
+    slug: 'irracionalnye-ekstraverty',
+    title: 'Иррациональные экстраверты',
+    description: 'Раскрытие потенциала',
+    content: irrationalExtrovertsContent,
+    image: {
+      src: '/irrational-extroverts.png',
+      avifSrc: '/irrational-extroverts.avif',
+      alt: 'Стилизованный эмоциональный портрет человека среди ярких мазков и фоновых силуэтов'
     }
   }
 ]

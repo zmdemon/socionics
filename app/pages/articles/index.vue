@@ -22,7 +22,9 @@ usePageSeo(
             <div
               :class="[
                 'article-card__layout',
-                { 'article-card__layout--without-image': !article.image }
+                {
+                  'article-card__layout--without-image': !article.image && !article.imagePlaceholder
+                }
               ]"
             >
               <picture
@@ -40,6 +42,12 @@ usePageSeo(
                   class="article-card__image"
                 >
               </picture>
+
+              <div
+                v-else-if="article.imagePlaceholder"
+                class="article-card__image article-card__image--placeholder"
+                aria-hidden="true"
+              />
 
               <div class="article-card__content">
                 <h2>{{ article.title }}</h2>

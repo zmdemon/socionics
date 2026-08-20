@@ -34,7 +34,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--paper);
 }
 
@@ -1143,6 +1143,10 @@ h3 {
   background: #d8d8d3;
 }
 
+.article-card__image--placeholder {
+  align-self: center;
+}
+
 .article-card__content {
   min-width: 0;
   padding: 0.6rem 0;
@@ -1537,7 +1541,8 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .article-card__picture {
+  .article-card__picture,
+  .article-card__image--placeholder {
     width: min(100%, 11rem);
   }
 

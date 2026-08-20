@@ -80,7 +80,12 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,mjs,html,png,avif,svg,ico,webmanifest,json}'],
-      globIgnores: ['rational-extroverts.png'],
+      globIgnores: [
+        'rational-extroverts.png',
+        'irrational-introverts.png',
+        'rational-introverts.png',
+        'irrational-extroverts.png'
+      ],
       cleanupOutdatedCaches: true,
       navigateFallback: '/',
       navigateFallbackDenylist: [/^\/(?:api|_nuxt)\//]
@@ -96,13 +101,16 @@ export default defineNuxtConfig({
     '/functions': { prerender: true },
     '/articles': { prerender: true },
     '/articles/racionalnye-ekstraverty': { prerender: true },
+    '/articles/irracionalnye-introverty': { prerender: true },
+    '/articles/racionalnye-introverty': { prerender: true },
+    '/articles/irracionalnye-ekstraverty': { prerender: true },
     '/about': { prerender: true }
   },
 
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/types', '/functions', '/articles', '/articles/racionalnye-ekstraverty', '/about']
+      routes: ['/', '/types', '/functions', '/articles', '/articles/racionalnye-ekstraverty', '/articles/irracionalnye-introverty', '/articles/racionalnye-introverty', '/articles/irracionalnye-ekstraverty', '/about']
     }
   },
 
