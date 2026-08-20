@@ -12,7 +12,7 @@ usePageSeo(
   'Сравнительная таблица всех восьми функций модели А для 16 социотипов с графическими знаками информационных элементов и их расшифровкой.'
 )
 
-const isPositionColumnCompact = ref(false)
+const isPositionColumnCompact = ref(true)
 const isFunctionDetailOpen = ref(false)
 const selectedFunctionDetail = ref<FunctionElementDetail | null>(null)
 
